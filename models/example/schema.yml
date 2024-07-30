@@ -1,21 +1,30 @@
-
 version: 2
 
-models:
-    - name: my_first_dbt_model
-      description: "A starter dbt model"
-      columns:
-          - name: id
-            description: "The primary key for this table"
-            tests:
-                - unique
-                - not_null
-
-    - name: my_second_dbt_model
-      description: "A starter dbt model"
-      columns:
-          - name: id
-            description: "The primary key for this table"
-            tests:
-                - unique
-                - not_null
+sources:
+  - name: raw
+    schema: gz_raw_data
+    description: raw_data
+    tables:
+      - name: sales
+        identifier: raw_gz_sales
+        description: sales_table
+        columns:
+          - name: products_id
+              ,date_date
+              ,orders_id
+              ,pdt_id
+              ,revenue
+              ,quantity
+      - name: products
+        description: products_table
+        columns:
+          - name: products_id
+              ,purchSE_PRICE
+      - name: ship
+        description: shipping_table
+        columns:
+          - name: orders_id
+              ,shipping_fee
+              ,shipping_fee_1
+              ,logCost
+              ,ship_cost
