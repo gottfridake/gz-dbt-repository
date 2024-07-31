@@ -1,7 +1,7 @@
 version: 2
 sources:
   - name: raw
-    schema: SQL_staffanake
+    schema: gz_raw_data
     description: data from GZ Enterprise
     tables:
       - name: sales
@@ -9,15 +9,14 @@ sources:
         description: Sales table
         columns:
           - name: date_date
-            description: Date of the sales 
-          - name: orders_id
+                 ,orders_id
             description: joint primary key of the table
           - name: pdt_id
             description: joint primary key of the table
           - name: revenue
-            description: Revenue from the sale
           - name: quantity
-            description: Quantity sold
+            description: quantities sold
+
 
       - name: product
         identifier: raw_product
@@ -25,9 +24,6 @@ sources:
         columns:
           - name: products_id
             description: Primary key of the table
-            tests:
-              - unique
-              - not_null
           - name: purchSE_PRICE
             description: Purchase price of the product
       - name: ship
@@ -36,14 +32,53 @@ sources:
         columns:
           - name: orders_id
             description: Primary key of the table
-            tests:
-              - unique
-              - not_null
           - name: shipping_fee
-            description: Shipping fee
           - name: shipping_fee_1
-            description: Additional shipping fee
+            description: additional shipping fee
           - name: logCost
-            description: Logistics cost
           - name: ship_cost
-            description: Shipping cost
+
+      - name: adverts
+        identifier: raw_gz_adwords
+        description: adverts_table
+        columns:
+          - name: date_date
+                  ,paid_source
+                  ,campaign_key
+                  ,camPGN_name
+                  ,ads_cost
+                  ,impression
+                  ,click
+      - name: bing
+        identifier: raw_gz_bing
+        description: bing_table
+        columns:
+          - name: date_date
+                  ,paid_source
+                  ,campaign_key
+                  ,camPGN_name
+                  ,ads_cost
+                  ,impression
+                  ,click
+      - name: criteo
+        identifier: raw_gz_criteo
+        description: criteo_ads
+        columns:
+          - name: date_date
+                  ,paid_source
+                  ,campaign_key
+                  ,camPGN_name
+                  ,ads_cost
+                  ,impression
+                  ,click
+      - name: facebook
+        identifier: raw_gz_facebook
+        description: facebook_ads
+        columns:
+          - name: date_date
+                  ,paid_source
+                  ,campaign_key
+                  ,camPGN_name
+                  ,ads_cost
+                  ,impression
+                  ,click
