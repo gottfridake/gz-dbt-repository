@@ -1,30 +1,49 @@
 version: 2
-
 sources:
   - name: raw
-    schema: gz_raw_data
-    description: raw_data
+    schema: SQL_staffanake
+    description: data from GZ Enterprise
     tables:
       - name: sales
         identifier: raw_gz_sales
-        description: sales_table
+        description: Sales table
+        columns:
+          - name: date_date
+            description: Date of the sales 
+          - name: orders_id
+            description: joint primary key of the table
+          - name: pdt_id
+            description: joint primary key of the table
+          - name: revenue
+            description: Revenue from the sale
+          - name: quantity
+            description: Quantity sold
+
+      - name: product
+        identifier: raw_product
+        description: Product table
         columns:
           - name: products_id
-              ,date_date
-              ,orders_id
-              ,pdt_id
-              ,revenue
-              ,quantity
-      - name: products
-        description: products_table
-        columns:
-          - name: products_id
-              ,purchSE_PRICE
+            description: Primary key of the table
+            tests:
+              - unique
+              - not_null
+          - name: purchSE_PRICE
+            description: Purchase price of the product
       - name: ship
-        description: shipping_table
+        identifier: raw_gz_ship
+        description: Shipping table
         columns:
           - name: orders_id
-              ,shipping_fee
-              ,shipping_fee_1
-              ,logCost
-              ,ship_cost
+            description: Primary key of the table
+            tests:
+              - unique
+              - not_null
+          - name: shipping_fee
+            description: Shipping fee
+          - name: shipping_fee_1
+            description: Additional shipping fee
+          - name: logCost
+            description: Logistics cost
+          - name: ship_cost
+            description: Shipping cost
